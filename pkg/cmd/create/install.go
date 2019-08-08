@@ -1192,6 +1192,10 @@ func (options *InstallOptions) configureHelmRepo() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to add the jenkinx-x helm repo")
 	}
+	_, err = options.AddHelmBinaryRepoIfMissing(kube.ViddseeChartMuseumURL, "viddsee", "", "")
+	if err != nil {
+		return errors.Wrap(err, "failed to add the viddsee helm repo")
+	}
 
 	err = options.Helm().UpdateRepo()
 	if err != nil {
@@ -3080,7 +3084,7 @@ func (options *InstallOptions) saveChartmuseumAuthConfig() error {
 	var server *auth.AuthServer
 	if options.ServerFlags.IsEmpty() {
 		url := ""
-		url, err = options.FindService(kube.ServiceChartMuseum)
+		url, err = options.FindService(kube.ViddseeServiceChartMuseum)
 		if err != nil {
 			log.Logger().Warnf("No service called %s could be found so couldn't wire up the local auth file to talk to chart museum", kube.ServiceChartMuseum)
 			return nil

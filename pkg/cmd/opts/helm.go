@@ -233,6 +233,10 @@ func (o *CommonOptions) InitHelm(config InitHelmConfig) error {
 	if err != nil {
 		return err
 	}
+	err = o.Helm().AddRepo("viddsee", kube.ViddseeChartMuseumURL, "", "")
+	if err != nil {
+		return err
+	}
 	log.Logger().Info("helm installed and configured")
 
 	return nil

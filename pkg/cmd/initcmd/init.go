@@ -138,8 +138,8 @@ func (o *InitOptions) AddIngressFlags(cmd *cobra.Command) {
 	cmd.Flags().StringVarP(&o.Flags.Domain, "domain", "", "", "Domain to expose ingress endpoints.  Example: jenkinsx.io")
 	cmd.Flags().StringVarP(&o.Flags.IngressClusterRole, "ingress-cluster-role", "", "cluster-admin", "The cluster role for the Ingress controller")
 	cmd.Flags().StringVarP(&o.Flags.IngressNamespace, "ingress-namespace", "", opts.DefaultIngressNamesapce, "The namespace for the Ingress controller")
-	cmd.Flags().StringVarP(&o.Flags.IngressService, "ingress-service", "", opts.DefaultIngressServiceName, "The name of the Ingress controller Service")
-	cmd.Flags().StringVarP(&o.Flags.IngressDeployment, "ingress-deployment", "", opts.DefaultIngressServiceName, "The name of the Ingress controller Deployment")
+	cmd.Flags().StringVarP(&o.Flags.IngressService, "ingress-service", "", opts.ViddseeIngressServiceName, "The name of the Ingress controller Service")
+	cmd.Flags().StringVarP(&o.Flags.IngressDeployment, "ingress-deployment", "", opts.ViddseeIngressServiceName, "The name of the Ingress controller Deployment")
 	cmd.Flags().StringVarP(&o.Flags.ExternalIP, "external-ip", "", "", "The external IP used to access ingress endpoints from outside the Kubernetes cluster. For bare metal on premise clusters this is often the IP of the Kubernetes master. For cloud installations this is often the external IP of the ingress LoadBalancer.")
 	cmd.Flags().BoolVarP(&o.Flags.SkipIngress, "skip-ingress", "", false, "Skips the installation of ingress controller. Note that a ingress controller must already be installed into the cluster in order for the installation to succeed")
 	cmd.Flags().BoolVarP(&o.Flags.OnPremise, "on-premise", "", false, "If installing on an on premise cluster then lets default the 'external-ip' to be the Kubernetes master IP address")
@@ -485,6 +485,8 @@ func (o *InitOptions) InitIngress() error {
 		}
 	}
 
+	// Viddsee: Custom override for ingress controller.
+	o.Flags.IngressDeployment = "vs-nginx-ingress-controller"
 	podCount, err := kube.DeploymentPodCount(client, o.Flags.IngressDeployment, ingressNamespace)
 	if podCount == 0 {
 		installIngressController := false

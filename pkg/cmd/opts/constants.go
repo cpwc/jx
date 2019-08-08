@@ -19,4 +19,7 @@ work
 	DefaultIngressNamesapce = "kube-system"
 	// DefaultIngressServiceName default name for ingress controller service and deployment
 	DefaultIngressServiceName = "jxing-nginx-ingress-controller"
+
+	// ViddseeIngressServiceName default name for ingress controller service and deployment
+	ViddseeIngressServiceName = "vs-nginx-ingress-controller"
 )

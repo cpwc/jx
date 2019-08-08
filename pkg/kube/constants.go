@@ -6,6 +6,11 @@ const (
 	// DefaultChartMuseumJxRepoName default repo name for Jenkins X Charts
 	DefaultChartMuseumJxRepoName = "jenkins-x"
 
+	// ViddseeChartMuseumURL default URL for Jenkins X Charts
+	ViddseeChartMuseumURL = "https://charts.ci.vidds.ee"
+	// ViddseeChartMuseumJxRepoName default repo name for Jenkins X Charts
+	ViddseeChartMuseumJxRepoName = "viddsee"
+
 	// ChartAmbassador the default chart for ambassador
 	ChartAmbassador = "datawire/ambassador"
 
@@ -90,6 +95,9 @@ const (
 
 	// ServiceChartMuseum the service name of the Helm ChartMuseum service
 	ServiceChartMuseum = "jenkins-x-chartmuseum"
+
+	// ViddseeServiceChartMuseum the service name of the Helm ChartMuseum service
+	ViddseeServiceChartMuseum = "chartmuseum-chartmuseum"
 
 	// ServiceKubernetesDashboard the Kubernetes dashboard
 	ServiceKubernetesDashboard = "jenkins-x-kubernetes-dashboard"

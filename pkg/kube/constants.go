@@ -41,7 +41,7 @@ const (
 	ChartKubeless = "incubator/kubeless"
 
 	// ChartProw the default chart for Prow
-	ChartProw = "jenkins-x/prow"
+	ChartProw = "viddsee/prow"
 
 	// ChartKnative the default chart for knative
 	ChartKnativeBuild = "jenkins-x/knative-build"
